@@ -3,16 +3,17 @@
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h2 class="title">Check out recent surveys</h2>
+          <h2 class="title">Check out recent Books</h2>
         </div>
       </div>
     </section>
     <section class="section">
       <div class="container">
-        <div class="card" v-for="survey in surveys" v-bind:key="survey.id">
+        <div class="card" v-for="book in books" v-bind:key="book.id">
           <div class="card-content">
-            <p class="title">{{ survey.name }}</p>
-            <p class="subtitle">{{ survey.created_at.toDateString() }}</p>
+            <p class="title">{{ book.title }}</p>
+            <p class="subtitle">{{ book.created_at.toDateString() }}</p>
+            <p v-if="book.read" class="subtitle has-text-success">Complete!</p>
           </div>
         </div>
       </div>
@@ -27,56 +28,46 @@
 export default {
   data() {
     return {
-      surveys: [
+      books: [
+        {
+          id: 0,
+          title: "Ender's Game",
+          author: "Orson Scott Card",
+          genre: "Sci Fi",
+          read: true,
+          created_at: new Date(2017, 12, 1)
+        },
         {
           id: 1,
-          name: "Dogs",
-          created_at: new Date(2017, 12, 1),
-          questions: [
-            {
-              id: 1,
-              text: "What is your favorite dog?",
-              choices: [
-                { id: 1, text: "Beagle", selected: 0 },
-                { id: 2, text: "Labrador", selected: 0 },
-                { id: 3, text: "Rottweiler", selected: 0 }
-              ]
-            },
-            {
-              id: 2,
-              text: "What is your second favorite dog?",
-              choices: [
-                { id: 5, text: "Beagle", selected: 0 },
-                { id: 6, text: "Labrador", selected: 0 },
-                { id: 7, text: "Rottweiler", selected: 0 }
-              ]
-            }
-          ]
+          title: "Leviathan Wakes",
+          author: "James S. A. Corey",
+          genre: "Sci Fi",
+          read: true,
+          created_at: new Date(2017, 12, 1)
         },
         {
           id: 2,
-          name: "Cars",
-          created_at: new Date(2017, 12, 3),
-          questions: [
-            {
-              id: 5,
-              text: "What is your favorite car?",
-              choices: [
-                { id: 17, text: "Corvette", selected: 0 },
-                { id: 18, text: "Mustang", selected: 0 },
-                { id: 19, text: "Camaro", selected: 0 }
-              ]
-            },
-            {
-              id: 6,
-              text: "What is your second favorite car?",
-              choices: [
-                { id: 21, text: "Corvette", selected: 0 },
-                { id: 22, text: "Mustang", selected: 0 },
-                { id: 23, text: "Camaro", selected: 0 }
-              ]
-            }
-          ]
+          title: "War and Peace",
+          author: "Leo Tolstoy",
+          genre: "Classics",
+          read: false,
+          created_at: new Date(2017, 12, 1)
+        },
+        {
+          id: 3,
+          title: "Harry Potter and the Socerers Stone",
+          author: "JK Rowling",
+          genre: "Fantasy",
+          read: true,
+          created_at: new Date(2017, 12, 1)
+        },
+        {
+          id: 4,
+          title: "The 4 Hour Workweek",
+          author: "Tim Ferriss",
+          genre: "Self Help",
+          read: true,
+          created_at: new Date(2017, 12, 1)
         }
       ]
     };

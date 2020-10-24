@@ -78,3 +78,22 @@ def login():
 def say_hello(name):
   response = { 'msg': "Hello {}".format(name) }
   return response
+
+@api.route('/books/', methods=('POST',))
+def create_book(current_user):
+    data = request.get_json()
+    book = Book(
+      title=data['title'], 
+      author=data['author'],
+      read=data['read'],
+      genre=data['genre'])
+    book.creator = current_user
+    db.session.add(book)
+    db.session.commit()
+    return jsonify(book.to_dict()), 201
+
+# Need to filter for just current user's books eventually
+@api.route('/books/', methods=('GET',))
+def fetch_books():
+    books = Book.query.all()
+    return jsonify([s.to_dict() for s in books])
